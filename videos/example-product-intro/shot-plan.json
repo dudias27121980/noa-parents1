@@ -1,0 +1,61 @@
+{
+  "category": "kinetic-type",
+  "duration_s": 10,
+  "fps": 30,
+  "canvas": { "w": 1920, "h": 1080, "aspect": "16:9" },
+  "style": "clean editorial dark, bold kinetic type, single blue accent, minimal/technical",
+  "palette": ["#0b1120", "#f8fafc", "#3b82f6"],
+  "font": "Inter",
+  "beats": [0, 3, 6.5, 8.5],
+  "export": "mp4",
+  "asset_needs": [],
+  "block": "caption-kinetic-slam",
+  "customize": {
+    "palette": ["#0b1120", "#f8fafc", "#3b82f6"],
+    "font": "Inter"
+  },
+  "content": {
+    "scenes": [
+      {
+        "id": "hook",
+        "start": 0,
+        "end": 3,
+        "text": "EXAMPLE DOMAIN",
+        "emphasis_words": ["EXAMPLE"],
+        "emotion": "confident, punchy",
+        "motion": "slam",
+        "beats": [0]
+      },
+      {
+        "id": "build",
+        "start": 3,
+        "end": 6.5,
+        "text": "A home for illustrative examples",
+        "emphasis_words": ["illustrative"],
+        "emotion": "calm, explanatory",
+        "motion": "word_reveal",
+        "beats": [3]
+      },
+      {
+        "id": "punch",
+        "start": 6.5,
+        "end": 8.5,
+        "text": "No permission needed",
+        "emphasis_words": ["needed"],
+        "emotion": "reassuring, direct",
+        "motion": "scale_punch",
+        "beats": [6.5]
+      },
+      {
+        "id": "resolve",
+        "start": 8.5,
+        "end": 10,
+        "text": "example.com",
+        "emphasis_words": ["example.com"],
+        "emotion": "confident close",
+        "motion": "fade_blur",
+        "beats": [8.5]
+      }
+    ]
+  }
+}

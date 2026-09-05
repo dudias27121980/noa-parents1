@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="vendor/gsap.min.js"></script>
+    <style>
+      @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 400;
+        src: url("assets/fonts/inter-latin-400-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 600;
+        src: url("assets/fonts/inter-latin-600-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Inter";
+        font-style: normal;
+        font-weight: 800;
+        src: url("assets/fonts/inter-latin-800-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "JetBrains Mono";
+        font-style: normal;
+        font-weight: 500;
+        src: url("assets/fonts/jetbrains-mono-latin-500-normal.woff2") format("woff2");
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--bg);
+      }
+      body {
+        font-family: "Inter", sans-serif;
+      }
+      code,
+      pre,
+      .monospace {
+        font-family: "JetBrains Mono", monospace;
+      }
+
+      :root {
+        --bg: #0b1120;
+        --bg-2: #10192e;
+        --ink: #f8fafc;
+        --ink-dim: #94a3b8;
+        --accent: #3b82f6;
+      }
+
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: radial-gradient(ellipse 1400px 900px at 50% 45%, var(--bg-2) 0%, var(--bg) 70%);
+      }
+
+      /* ambient glow, lives the whole piece */
+      #glow {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+        background: radial-gradient(circle 520px at 50% 52%, rgba(59, 130, 246, 0.22), transparent 70%);
+        transform-origin: center;
+      }
+
+      .scene {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        padding: 120px 160px;
+        gap: 28px;
+        z-index: 10;
+      }
+
+      .word {
+        display: inline-block;
+        opacity: 0;
+      }
+
+      .rule {
+        width: 96px;
+        height: 4px;
+        background: var(--accent);
+        border-radius: 2px;
+        transform: scaleX(0);
+        transform-origin: center;
+      }
+
+      /* Scene 1 — hook */
+      #s-hook .headline {
+        font-size: 164px;
+        font-weight: 800;
+        letter-spacing: -0.01em;
+        line-height: 1;
+        color: var(--ink);
+        text-transform: uppercase;
+      }
+      #s-hook .headline .accent {
+        color: var(--accent);
+      }
+
+      /* Scene 2 — build */
+      #s-build .line {
+        font-size: 76px;
+        font-weight: 600;
+        color: var(--ink);
+        line-height: 1.15;
+      }
+      #s-build .line .accent {
+        color: var(--accent);
+      }
+
+      /* Scene 3 — punch */
+      #s-punch .line {
+        font-size: 92px;
+        font-weight: 800;
+        color: var(--ink);
+        letter-spacing: -0.005em;
+      }
+      #s-punch .line .accent {
+        color: var(--accent);
+      }
+
+      /* Scene 4 — resolve */
+      #s-resolve .domain {
+        font-family: "JetBrains Mono", monospace;
+        font-weight: 500;
+        font-size: 108px;
+        letter-spacing: 0.01em;
+        color: var(--ink);
+      }
+      #s-resolve .domain .accent {
+        color: var(--accent);
+      }
+      #s-resolve .sub {
+        font-size: 34px;
+        font-weight: 400;
+        color: var(--ink-dim);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="main"
+      data-start="0"
+      data-duration="10"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div id="glow"></div>
+
+      <!-- Scene 1: 0 - 3s — hook -->
+      <div id="s-hook" class="scene clip" data-start="0" data-duration="3" data-track-index="1">
+        <div class="headline"><span class="accent word">Example</span> <span class="word">Domain</span></div>
+      </div>
+
+      <!-- Scene 2: 3 - 6.5s — build -->
+      <div id="s-build" class="scene clip" data-start="3" data-duration="3.5" data-track-index="1">
+        <div class="line">
+          <span class="word">A</span> <span class="word">home</span> <span class="word">for</span>
+          <span class="accent word">illustrative</span> <span class="word">examples.</span>
+        </div>
+      </div>
+
+      <!-- Scene 3: 6.5 - 8.5s — punch -->
+      <div id="s-punch" class="scene clip" data-start="6.5" data-duration="2" data-track-index="1">
+        <div class="line">
+          <span class="word">No</span> <span class="word">permission</span> <span class="accent word">needed.</span>
+        </div>
+      </div>
+
+      <!-- Scene 4: 8.5 - 10s — resolve -->
+      <div id="s-resolve" class="scene clip" data-start="8.5" data-duration="1.5" data-track-index="1">
+        <div class="domain word">example<span class="accent">.com</span></div>
+        <div class="rule" id="resolve-rule"></div>
+        <div class="sub word">Use it freely in your examples</div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // ambient glow — a slow held breath across the whole piece
+      tl.to("#glow", { scale: 1.06, duration: 5, ease: "sine.inOut", yoyo: true, repeat: 1 }, 0);
+
+      // ---- Scene 1: hook (0 - 3s) — slam ----
+      tl.fromTo(
+        "#s-hook .word",
+        { y: -260, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, ease: "power4.out", stagger: 0.12 },
+        0.1,
+      );
+      // landing shake on the accent word
+      tl.to("#s-hook .accent", { x: -6, duration: 0.05, ease: "none", overwrite: "auto" }, 0.62);
+      tl.to("#s-hook .accent", { x: 6, duration: 0.05, ease: "none", overwrite: "auto" }, 0.68);
+      tl.to("#s-hook .accent", { x: 0, duration: 0.05, ease: "none", overwrite: "auto" }, 0.74);
+
+      // ---- Scene 2: build (3 - 6.5s) — word reveal ----
+      tl.fromTo(
+        "#s-build .word",
+        { y: 24, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.32, ease: "power2.out", stagger: 0.11 },
+        3.05,
+      );
+      tl.to(
+        "#s-build .accent",
+        { textShadow: "0 0 46px rgba(59,130,246,0.85)", duration: 0.4, yoyo: true, repeat: 1, ease: "sine.inOut" },
+        4.1,
+      );
+
+      // ---- Scene 3: punch (6.5 - 8.5s) — scale punch ----
+      tl.fromTo(
+        "#s-punch .word",
+        { scale: 0.6, opacity: 0 },
+        { scale: 1, opacity: 1, duration: 0.4, ease: "back.out(2.2)", stagger: 0.1 },
+        6.6,
+      );
+      tl.to("#s-punch .accent", { scale: 1.12, duration: 0.22, yoyo: true, repeat: 1, ease: "sine.inOut" }, 7.35);
+
+      // ---- Scene 4: resolve (8.5 - 10s) — fade + blur in, then a confident close ----
+      tl.fromTo(
+        "#s-resolve .domain",
+        { opacity: 0, filter: "blur(14px)", scale: 0.96 },
+        { opacity: 1, filter: "blur(0px)", scale: 1, duration: 0.55, ease: "power2.out" },
+        8.6,
+      );
+      tl.fromTo("#resolve-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.4, ease: "power2.out" }, 9.05);
+      tl.fromTo("#s-resolve .sub", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, 9.2);
+
+      tl.seek(0);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
